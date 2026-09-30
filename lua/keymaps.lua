@@ -38,6 +38,9 @@ end)
 
 vim.keymap.set("n", "<leader>g", vim.lsp.buf.code_action)
 
+-- Rename values (07/04/2026)
+vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
+
 vim.keymap.set('n', '<leader>q', function()
   local winid = vim.fn.getloclist(0, { winid = 0 }).winid
   if winid ~= 0 then
