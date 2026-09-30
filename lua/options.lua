@@ -9,3 +9,8 @@ vim.opt.softtabstop = 4
 vim.opt.expandtab = true
 vim.opt.smartindent = true
 
+-- visual markdown rendering (render-markdown.nvim)
+vim.g.markdown_recommended_style = 0
+vim.opt.conceallevel = 2
+vim.opt.concealcursor = "n"
+

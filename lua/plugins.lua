@@ -16,6 +16,30 @@ require("lazy").setup({
   { "nvim-telescope/telescope.nvim", dependencies = "nvim-lua/plenary.nvim" },
 
   {
+    "MeanderingProgrammer/render-markdown.nvim",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    ft = { "markdown", "mdx" },
+    opts = {
+      file_types = { "markdown", "mdx" },
+      heading = {
+        sign = true,
+        position = "inline",
+      },
+      code = {
+        sign = true,
+        width = "block",
+        language = true,
+      },
+      bullet = { enabled = true },
+      checkbox = { enabled = true },
+      quote = { enabled = true },
+      pipe_table = { enabled = true },
+    },
+  },
+
+  {
+
+
     "akinsho/toggleterm.nvim",
     version = "*",
     config = function()

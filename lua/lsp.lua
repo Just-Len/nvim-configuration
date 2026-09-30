@@ -1,9 +1,29 @@
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 require("mason-lspconfig").setup({
-  ensure_installed = { "jdtls", "rust_analyzer" }
+  ensure_installed = { "jdtls", "rust_analyzer", "clangd" }
 })
 
+
+vim.lsp.config("jdtls", {
+  cmd = {
+    "jdtls",
+    "--jvm-arg=-javaagent:/home/len/.local/share/nvim/mason/share/jdtls/lombok.jar",
+
+  },
+
+  capabilities = capabilities,
+
+  settings = {
+    java = {
+      signatureHelp = {
+        enabled = true,
+      },
+    },
+  },
+})
+
+--[[
 vim.lsp.config("jdtls", {
   install = {
     cmd = {
@@ -18,7 +38,7 @@ vim.lsp.config("jdtls", {
     },
   },
 })
-
+]]
 vim.lsp.config("rust_analyzer", {
   options = {
     capabilities = capabilities,
@@ -31,5 +51,10 @@ vim.lsp.config("rust_analyzer", {
   },
 })
 
+vim.lsp.config("clangd", {
+capabilities = capabilities,
+})
+
 vim.lsp.enable("jdtls")
 vim.lsp.enable("rust_analyzer")
+vim.lsp.enable("clangd")
