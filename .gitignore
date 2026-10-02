@@ -1,1 +1,17 @@
 *.backup.lua
+
+*.keystore
+secrets.lua
+local.lua
+local/
+*.secret
+credentials.json
+.netrc
+.id_rsa*
+
+*.log
+log/
+.undo/
+tags
+
+desktop.ini
