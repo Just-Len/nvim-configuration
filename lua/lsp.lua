@@ -1,16 +1,19 @@
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local mason_root = require("mason.settings").current.install_root_dir
 
 require("mason-lspconfig").setup({
   ensure_installed = { "jdtls", "rust_analyzer", "clangd" }
 })
 
+local lombok_jar = vim.fs.joinpath(mason_root, "packages", "jdtls", "lombok.jar")
+
+local jdtls_cmd = { "jdtls" }
+if vim.fn.filereadable(lombok_jar) == 1 then
+  table.insert(jdtls_cmd, "--jvm-arg=-javaagent:" .. lombok_jar)
+end
 
 vim.lsp.config("jdtls", {
-  cmd = {
-    "jdtls",
-    "--jvm-arg=-javaagent:/home/len/.local/share/nvim/mason/share/jdtls/lombok.jar",
-
-  },
+  cmd = jdtls_cmd,
 
   capabilities = capabilities,
 
@@ -25,12 +28,12 @@ vim.lsp.config("jdtls", {
 
 --[[
 vim.lsp.config("jdtls", {
-  install = {
-    cmd = {
-      "jdtls",
-      "--jvm-arg=-javaagent:/home/len/.local/share/nvim/mason/share/jdtls/lombok.jar",
+install = {
+      cmd = {
+        "jdtls",
+        "--jvm-arg=-javaagent:" .. lombok_jar,
+      },
     },
-  },
   options = {
     capabilities = capabilities,
     settings = {
